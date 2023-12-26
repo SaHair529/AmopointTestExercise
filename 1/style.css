@@ -1,0 +1,17 @@
+#file_form {
+    margin-bottom: 15px;
+}
+
+.red_circle, .green_circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.red_circle {
+    background: red;
+}
+
+.green_circle {
+    background: green;
+}

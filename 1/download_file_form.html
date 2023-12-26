@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Форма загрузки файла</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <form id="file_form">
     <input type="file" id="upload_file">
     <input type="submit" value="Загрузить файл" id="submit_file_form">
 </form>
+
+<div id="circle_wrapper"></div>
 
 <script type="application/javascript">
     const fileForm = document.getElementById('file_form')
@@ -27,10 +30,8 @@
         formData.append('upload_file', $fileInput.files[0])
         fetch('http://localhost/1/handle_file.php', {
             method: 'POST',
-            // headers: { 'Content-Type': 'application/json' },
-            // body: { upload_file: $fileInput.files[0] }
             body: formData
-        })
+        }).then(handleResponse)
     }
 
     function handleResponse(response) {
@@ -41,11 +42,23 @@
     }
 
     function renderGreenCircle() {
-        // todo render green circle
+        const circleWrapper = document.getElementById('circle_wrapper')
+        circleWrapper.innerHTML = ''
+
+        const greenCircle = document.createElement('div')
+        greenCircle.className = 'green_circle'
+
+        circleWrapper.append(greenCircle)
     }
 
     function renderRedCircle() {
-        // todo render red circle
+        const circleWrapper = document.getElementById('circle_wrapper')
+        circleWrapper.innerHTML = ''
+
+        const redCircle = document.createElement('div')
+        redCircle.className = 'red_circle'
+
+        circleWrapper.append(redCircle)
     }
 </script>
 </body>
