@@ -5,6 +5,48 @@
     <title>Форма загрузки файла</title>
 </head>
 <body>
-<!-- todo Добавить форму загрузки файла -->
+<form id="file_form">
+    <input type="file" id="upload_file">
+    <input type="submit" value="Загрузить файл" id="submit_file_form">
+</form>
+
+<script type="application/javascript">
+    const fileForm = document.getElementById('file_form')
+    fileForm.addEventListener('submit', submitFileForm)
+
+    function submitFileForm(e) {
+        e.preventDefault()
+
+        const $fileInput = e.target.querySelector('#upload_file')
+        if ($fileInput.files[0] === undefined) {
+            alert('Добавьте файл перед отправкой')
+            return
+        }
+
+        const formData = new FormData()
+        formData.append('upload_file', $fileInput.files[0])
+        fetch('http://localhost/1/handle_file.php', {
+            method: 'POST',
+            // headers: { 'Content-Type': 'application/json' },
+            // body: { upload_file: $fileInput.files[0] }
+            body: formData
+        })
+    }
+
+    function handleResponse(response) {
+        if (response.status === 200)
+            renderGreenCircle()
+        else
+            renderRedCircle()
+    }
+
+    function renderGreenCircle() {
+        // todo render green circle
+    }
+
+    function renderRedCircle() {
+        // todo render red circle
+    }
+</script>
 </body>
 </html>
